@@ -14,6 +14,7 @@ export default class ApiStack extends sst.Stack {
           TABLE_NAME: table.tableName,
         },
       },
+      defaultAuthorizationType: "AWS_IAM",
       routes: {
         "POST /notes": "src/create.main",
         "GET /notes/{id}": "src/get.main",
