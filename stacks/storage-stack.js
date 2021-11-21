@@ -18,6 +18,17 @@ export default class StorageStack extends sst.Stack {
       },
     });
 
-    this.bucket = new sst.Bucket(this, "uploads");
+    this.bucket = new sst.Bucket(this, "uploads", {
+      s3Bucket: {
+        cors: [
+          {
+            maxAge: 3000,
+            allowedOrigins: ["*"],
+            allowedHeaders: ["*"],
+            allowedMethods: ["GET", "PUT", "POST", "DELETE", "HEAD"],
+          },
+        ],
+      },
+    });
   }
 }

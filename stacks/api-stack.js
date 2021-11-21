@@ -1,4 +1,5 @@
 import * as sst from "@serverless-stack/resources";
+import { HttpMethod } from "@aws-cdk/aws-apigatewayv2";
 
 export default class ApiStack extends sst.Stack {
   api;
@@ -9,6 +10,9 @@ export default class ApiStack extends sst.Stack {
     const { table } = props;
 
     this.api = new sst.Api(this, "api", {
+      cors: {
+        allowMethods: [HttpMethod.GET],
+      },
       defaultFunctionProps: {
         environment: {
           TABLE_NAME: table.tableName,
