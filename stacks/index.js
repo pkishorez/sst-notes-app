@@ -1,3 +1,4 @@
+import ApiStack from "./api-stack";
 import StorageStack from "./storage-stack";
 
 export default function main(app) {
@@ -7,5 +8,9 @@ export default function main(app) {
   });
 
   // Add more stacks
-  new StorageStack(app, "storage");
+  const storageStack = new StorageStack(app, "storage");
+
+  new ApiStack(app, "api", {
+    table: storageStack.table,
+  });
 }
